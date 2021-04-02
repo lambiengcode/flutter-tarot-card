@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_getx_template/src/pages/home/home_page.dart';
 import 'package:flutter_getx_template/src/pages/splash/splash_page.dart';
 import 'pages/home/home_page.dart';
+import 'package:get/get.dart';
 
 class App extends StatefulWidget {
   static bool firstCome = true;
@@ -40,8 +41,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness:
+          GetPlatform.isAndroid ? Brightness.light : Brightness.dark,
+      statusBarIconBrightness:
+          GetPlatform.isAndroid ? Brightness.light : Brightness.dark,
     ));
     WidgetsBinding.instance.addObserver(this);
     SystemChrome.setPreferredOrientations([

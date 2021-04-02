@@ -33,6 +33,8 @@ dependencies:
   flip_card: ^0.4.4
   lottie: ^0.7.0+1
   intl:
+  flutter_neumorphic: ^3.0.4+1
+  flutter_icons:
 
 dev_dependencies:
   flutter_test:
