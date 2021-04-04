@@ -1,4 +1,5 @@
 import 'package:flutter_getx_template/src/app.dart';
+import 'package:flutter_getx_template/src/pages/home/details_page.dart';
 import 'package:get/get.dart';
 part 'app_routes.dart';
 
@@ -10,6 +11,13 @@ class AppPages {
     GetPage(
       name: Routes.ROOT,
       page: () => App(),
+      children: [],
+    ),
+    GetPage(
+      name: Routes.DETAILS,
+      page: () => DetailsPage(
+        results: Get.arguments,
+      ),
       children: [],
     ),
   ];

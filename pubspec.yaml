@@ -35,6 +35,7 @@ dependencies:
   intl:
   flutter_neumorphic: ^3.0.4+1
   flutter_icons:
+  translator: ^0.1.5
 
 dev_dependencies:
   flutter_test:

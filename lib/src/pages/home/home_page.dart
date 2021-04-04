@@ -1,13 +1,14 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/data/tarot_json.dart';
+import 'package:flutter_getx_template/src/public/constant.dart';
 import 'package:flutter_getx_template/src/public/styles.dart';
+import 'package:flutter_getx_template/src/routes/app_pages.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import '../../public/constant.dart';
-import '../../public/styles.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -35,6 +36,50 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: colorBlack,
+        elevation: .0,
+        centerTitle: true,
+        title: Text(
+          'today'.trArgs() + ' ' + format.format(DateTime.now()),
+          style: TextStyle(
+            color: mCL,
+            fontFamily: 'Lato',
+            fontSize: width / 20.0,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              if (Get.locale == Locale('vi', 'VN')) {
+                Get.updateLocale(Locale('en', 'US'));
+              } else {
+                Get.updateLocale(Locale('vi', 'VN'));
+              }
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 2.0),
+              margin: EdgeInsets.symmetric(vertical: 1.0),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                Get.locale == Locale('vi', 'VN') ? 'vi' : 'en',
+                style: TextStyle(
+                  color: colorPrimary,
+                  fontFamily: 'Lato',
+                  fontSize: width / 22.5,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 8.0),
+        ],
+      ),
       body: Container(
         color: colorBlack,
         height: height,
@@ -42,51 +87,39 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: height / 15.0),
-            Text(
-              'Today is ${format.format(DateTime.now())}',
-              style: TextStyle(
-                fontSize: width / 18.0,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Lato',
-                letterSpacing: 1.5,
-                wordSpacing: 1.5,
-                color: mC,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 24.0),
+            SizedBox(height: 12.0),
             Container(
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildTarotCard(cardKey1, 0, 'Tổng quan'),
+                      _buildTarotCard(cardKey1, 0, 'overview'.trArgs()),
                       SizedBox(width: 16.0),
-                      _buildTarotCard(cardKey2, 1, 'Công việc'),
+                      _buildTarotCard(cardKey2, 1, 'work'.trArgs()),
                     ],
                   ),
                   SizedBox(height: 16.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _buildTarotCard(cardKey3, 2, 'Tình yêu'),
+                      _buildTarotCard(cardKey3, 2, 'love'.trArgs()),
                       SizedBox(width: 16.0),
-                      _buildTarotCard(cardKey4, 3, 'Tài chính'),
+                      _buildTarotCard(cardKey4, 3, 'finance'.trArgs()),
                     ],
                   ),
                   SizedBox(height: 30.0),
                   flips.contains(false)
                       ? Container()
                       : NeumorphicButton(
-                          onPressed: () => null,
+                          onPressed: () => Get.toNamed(Routes.DETAILS,
+                              arguments: unLockCard.sublist(0, 4)),
                           margin: EdgeInsets.symmetric(horizontal: 48.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Giải bài',
+                                'solveCards'.trArgs(),
                                 style: TextStyle(
                                   color: colorPrimary,
                                   fontFamily: 'Lato',
