@@ -25,7 +25,6 @@ class _DetailsPageState extends State<DetailsPage> {
       widget.results[0]['meanings']['light'].join('\n\n'),
       to: 'vi',
     );
-    print(value1);
     value2 = await translator.translate(
       widget.results[1]['meanings']['light'].join('\n\n'),
       to: 'vi',
