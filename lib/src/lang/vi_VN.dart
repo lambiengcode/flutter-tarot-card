@@ -1,5 +1,5 @@
 const Map<String, String> vi_VN = {
-  'today': 'Today is',
+  'today': 'Hôm nay là',
   'overview': 'Tổng quan',
   'work': 'Công việc',
   'love': 'Tình yêu',
